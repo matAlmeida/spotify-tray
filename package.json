@@ -1,0 +1,17 @@
+{
+  "name": "spotify-tray",
+  "version": "1.0.0",
+  "description": "Spotify tray icon with current music info",
+  "main": "index.js",
+  "dependencies": {
+    "electron": "^8.0.0",
+    "node-osascript": "^2.1.0",
+    "spotify-node-applescript": "^1.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Matheus Almeida <mat.almeida@live.com>",
+  "license": "MIT"
+}
