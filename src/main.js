@@ -2,7 +2,6 @@ const { app, Tray, Menu } = require("electron");
 const path = require("path");
 
 const spotify = require("./lib/spotify");
-const spotifyScripts = require("./lib/spotify/scripts");
 
 app.dock.hide();
 
@@ -21,7 +20,7 @@ app.on("ready", () => {
       label: "Open Spotify",
       type: "normal",
       click: () => {
-        spotifyScripts.open();
+        spotify.scripts.open();
       }
     },
     { type: "separator" },
@@ -40,7 +39,7 @@ app.on("ready", () => {
 });
 
 async function updateTitle(tray) {
-  const running = await spotifyScripts.isRunning();
+  const running = await spotify.scripts.isRunning();
   if (running) {
     const track = await spotify.getTrackString();
     tray.setTitle(track);

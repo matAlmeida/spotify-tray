@@ -18,5 +18,6 @@ function track2String(track) {
 }
 
 module.exports = {
-  getTrackString
+  getTrackString,
+  scripts: spotifyScripts
 };
