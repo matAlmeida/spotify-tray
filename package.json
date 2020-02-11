@@ -4,12 +4,23 @@
   "description": "Spotify tray icon with current music info",
   "main": "index.js",
   "dependencies": {
-    "electron": "^8.0.0",
     "node-osascript": "^2.1.0",
     "spotify-node-applescript": "^1.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "electron": "^8.0.0",
+    "electron-installer-dmg": "^3.0.0",
+    "electron-packager": "^14.2.1",
+    "npm-run-all": "^4.1.5"
+  },
   "scripts": {
+    "clean": "rm -rf dist",
+    "pack:mac": "electron-packager . SpotifyTray --platform=darwin --out=./dist/osx --arch=x64 --icon=assets/build/osx/icon.icns --ignore=\"(docs|.gitignore)\"",
+    "pack": "npm-run-all --parallel pack:**",
+    "installer:mac": "electron-installer-dmg ./dist/osx/SpotifyTray-darwin-x64/SpotifyTray.app SpotifyTray --out=./dist/osx --icon=assets/build/osx/icon.icns --title=\"Spotify Tray\"",
+    "installer": "npm-run-all --parallel installer:**",
+    "prebuild": "npm-run-all clean",
+    "build": "npm-run-all prebuild pack installer",
     "start": "electron ."
   },
   "author": "Matheus Almeida <mat.almeida@live.com>",
