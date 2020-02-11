@@ -64,11 +64,56 @@ async function reduceVolume() {
   }
 }
 
+async function togglePlay() {
+  try {
+    await execAppleScript("toggle_play");
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+async function toggleShuffle() {
+  try {
+    await execAppleScript("toggle_shuffle");
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+async function toggleRepeat() {
+  try {
+    await execAppleScript("toggle_repeat");
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+async function nextTrack() {
+  try {
+    await execAppleScript("next_track");
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+async function previousTrack() {
+  try {
+    await execAppleScript("previous_track");
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
 module.exports = {
   open,
   isRunning,
   getState,
   getTrack,
   raiseVolume,
-  reduceVolume
+  reduceVolume,
+  togglePlay,
+  toggleShuffle,
+  toggleRepeat,
+  nextTrack,
+  previousTrack
 };
