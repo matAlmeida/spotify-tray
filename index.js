@@ -1,4 +1,4 @@
-const { app, Tray } = require("electron");
+const { app, Tray, Menu } = require("electron");
 const path = require("path");
 
 const spotify = require("./lib/spotify");
@@ -16,9 +16,25 @@ app.on("ready", () => {
     updateTitle(tray);
   }, 1000);
 
-  tray.on("click", () => {
-    spotifyScripts.open();
-  });
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: "Open Spotify",
+      type: "normal",
+      click: () => {
+        spotifyScripts.open();
+      }
+    },
+    { type: "separator" },
+    {
+      label: "Quit SpotifyTray",
+      type: "normal",
+      click: () => {
+        app.exit(0);
+      }
+    }
+  ]);
+
+  tray.setContextMenu(contextMenu);
 
   app.on("quit", () => clearInterval(titleInterval));
 });
